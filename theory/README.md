@@ -32,3 +32,8 @@ Python Analysis | OriginLab Analysis
 * [scipy.stats.ks_2samp](https://docs.scipy.org/doc/scipy-0.15.1/reference/generated/scipy.stats.ks_2samp.html)
 * [target power](https://stackoverflow.com/questions/15204070/is-there-a-python-scipy-function-to-determine-parameters-needed-to-obtain-a-ta) (stack overflow)
 * [two sample KS test procedure](https://influentialpoints.com/Training/kolmogorov-smirnov_test-principles-properties-assumptions.htm#twos)
+* [online KS2 tester](http://scistatcalc.blogspot.com/2013/11/kolmogorov-smirnov-test-calculator.html)
+* [KS2 in Excel](http://www.real-statistics.com/non-parametric-tests/goodness-of-fit-tests/two-sample-kolmogorov-smirnov-test/)
+* [KS2 theory](https://ocw.mit.edu/courses/mathematics/18-443-statistics-for-applications-fall-2006/lecture-notes/lecture14.pdf)
+* [Evaluating the K Distribution](http://www.jstatsoft.org/v08/i18/paper?ev=pub_ext_btn_xdl)
+* [nag_2_sample_ks_test (g08cdc)](https://www.nag.co.uk/numeric/cl/nagdoc_latest/html/g08/g08cdc.html) (part of [NAG](https://en.wikipedia.org/wiki/NAG_Numerical_Library))

@@ -90,7 +90,7 @@ class ksTest:
         k = self.ksStat
         n = len(self.valuesA)
         m = len(self.valuesB)
-        self.ksPvalue = np.exp((-2*n*m*k*k)/(n+m)) # seems to be 2 off
+        self.ksPvalue = np.exp((-2*n*m*k*k)/(n+m))
 
     def displayKstatistic(self):
         print("K Statistic:", self.ksStat)
@@ -124,14 +124,7 @@ class ksTest:
         plt.tight_layout()
         plt.show()
 
-
-if __name__ == "__main__":
-
-    print("\nSciPy says:")
-    print(scipy.stats.ks_2samp(dataReader.valuesA, dataReader.valuesB))
-
-    bootStrapCount = 20_000
-    bootStrapSampleCount = 1829
+def bootstrapKs2(bootStrapCount = 20_000, bootStrapSampleCount = 1829):
     print(f"\nNow bootstrapping {bootStrapCount} times with {bootStrapSampleCount}-point samples...")
     kValues = np.empty(bootStrapCount)
     pValues = np.empty(bootStrapCount)
@@ -146,7 +139,35 @@ if __name__ == "__main__":
     
     print("K values: %f (+/- %f)" % (np.mean(kValues), np.std(kValues)/np.sqrt(bootStrapCount)))
     print("P values: %f (+/- %f)" % (np.mean(pValues), np.std(pValues)/np.sqrt(bootStrapCount)))
-
     # current output:
     # K values: 0.051491 (+/- 0.000093)
     # P values: 0.037624 (+/- 0.000514)
+
+def compareToScipy():
+
+    valuesA = dataReader.valuesAsubset
+    valuesB = dataReader.valuesBsubset
+
+    scipyResult = scipy.stats.ks_2samp(valuesA, valuesB)
+    ks = ksTest(valuesA, valuesB)
+    print()
+    print(" SciPy K:", scipyResult.statistic)
+    print("Python K:", ks.ksStat)
+    print()
+    print(" SciPy P:", scipyResult.pvalue)
+    print("Python P*2:", ks.ksPvalue*2)
+    print("Python P:", ks.ksPvalue)
+    print("Python P(D):", calculatePfromD(ks.ksStat))
+
+def calculatePfromD(D):
+    p = 0
+    z = D
+    for i in range(1,30370+1):
+        p += np.power(-1, i-1)*np.exp(-2*i*i*z*z)
+    p *= 2
+    return p
+
+if __name__ == "__main__":
+    compareToScipy()
+    #calculatePfromD(.256168)
+    # we need to convert a K statistic (D) to a P value.

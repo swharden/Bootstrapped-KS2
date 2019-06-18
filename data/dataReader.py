@@ -14,6 +14,9 @@ def loadValuesFromFile(filePath):
 
 valuesA = loadValuesFromFile(PATH_HERE + "/valuesA.csv")
 valuesB = loadValuesFromFile(PATH_HERE + "/valuesB.csv")
+valuesAsubset = loadValuesFromFile(PATH_HERE + "/valuesAsubset.csv")
+valuesBsubset = loadValuesFromFile(PATH_HERE + "/valuesBsubset.csv")
+
 
 if __name__=="__main__":
     print("DO NOT RUN THIS MODULE DIRECTLY")
