@@ -18,6 +18,15 @@ This page contains notes about the Two-sample Kolmogorov–Smirnov (KS2) test.
 
 ![](https://upload.wikimedia.org/wikipedia/commons/3/3f/KS2_Example.png)
 
+## Creating CPH Plots Discretely
+* Sample datasets were added to [/data/](/data/).
+* A CSV file reader module was [implimented in Python](/data/dataReader.py).
+* Analysis of this dataset was previously performed with OriginLab:
+
+Python Analysis | OriginLab Analysis
+---|---
+![](/data/OriginLab-Summary.PNG) | ![](/data/Python-Summary.PNG)
+
 ## Links
 * [two sample KS test](https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test#Two-sample_Kolmogorov%E2%80%93Smirnov_test) (wikipedia)
 * [scipy.stats.ks_2samp](https://docs.scipy.org/doc/scipy-0.15.1/reference/generated/scipy.stats.ks_2samp.html)
