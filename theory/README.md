@@ -20,7 +20,7 @@ This page contains notes about the Two-sample Kolmogorov–Smirnov (KS2) test.
 
 ## Creating CPH Plots Discretely
 * Sample datasets were added to [/data/](/data/).
-* A CSV file reader module was [implimented in Python](/data/dataReader.py).
+* A CSV file reader module was [implemented in Python](/data/dataReader.py).
 * Analysis of this dataset was previously performed with OriginLab:
 
 Python Analysis | OriginLab Analysis
