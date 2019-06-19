@@ -12,7 +12,7 @@ import scipy.stats
 
 class ksTest:
 
-    def __init__(self, valuesA, valuesB, binSize=0.1, displayInfo = False, createPlots = False):
+    def __init__(self, valuesA, valuesB, binSize=.1, displayInfo=False, createPlots=False):
 
         self.analyzeValues(valuesA, valuesB)
         self.calculateBins(binSize)
@@ -61,8 +61,8 @@ class ksTest:
         self.bins = np.arange(binCount) * binSize
 
     def displayBinInfo(self):
-        print("Using %d bins (beteen %f and %f) of size %f" % (len(self.bins),
-                                                               self.bins[0], self.bins[-1], self.bins[1]-self.bins[0]))
+        print("Using %d bins (beteen %f and %f) of size %f" %
+              (len(self.bins), self.bins[0], self.bins[-1], self.bins[1]-self.bins[0]))
 
     def createHistograms(self):
         binCount = len(self.bins)
@@ -87,10 +87,14 @@ class ksTest:
         self.ksValue = self.bins[self.kStatisticMaxIndex]
         self.ksStat = self.kStatisticCurve[self.kStatisticMaxIndex] / 100.0
 
+        # This is the the Wikipedia formula (solved for P) and *2
         k = self.ksStat
         n = len(self.valuesA)
         m = len(self.valuesB)
-        self.ksPvalue = np.exp((-2*n*m*k*k)/(n+m))
+        self.ksPvalue = np.exp((-2*n*m*k*k)/(n+m))*2
+
+        # if p<.1 a better approximation is
+        # https://link.springer.com/article/10.1007/BF02504745 (paywall)
 
     def displayKstatistic(self):
         print("K Statistic:", self.ksStat)
@@ -114,9 +118,12 @@ class ksTest:
         plt.grid(alpha=.2, ls='--')
         plt.ylabel("K-statistic (%)")
         plt.xlabel("Value")
-        plt.plot(self.bins, self.kStatisticCurve, label = 'CPH difference', color='C3')
-        plt.axvline(self.ksValue, label = "K value: %.03f" % self.ksValue, color='C2')
-        plt.axhline(self.ksStat*100, label = "K statistic: %.05f" % self.ksStat, color='C4')
+        plt.plot(self.bins, self.kStatisticCurve,
+                 label='CPH difference', color='C3')
+        plt.axvline(self.ksValue, label="K value: %.03f" %
+                    self.ksValue, color='C2')
+        plt.axhline(self.ksStat*100, label="K statistic: %.05f" %
+                    self.ksStat, color='C4')
         plt.axhline(0, color='k')
         plt.legend()
         maxVal = np.percentile(self.valuesAandB, 99)
@@ -124,24 +131,31 @@ class ksTest:
         plt.tight_layout()
         plt.show()
 
-def bootstrapKs2(bootStrapCount = 20_000, bootStrapSampleCount = 1829):
-    print(f"\nNow bootstrapping {bootStrapCount} times with {bootStrapSampleCount}-point samples...")
+
+def bootstrapKs2(bootStrapCount=20_000, bootStrapSampleCount=1829):
+    print(
+        f"\nNow bootstrapping {bootStrapCount} times with {bootStrapSampleCount}-point samples...")
     kValues = np.empty(bootStrapCount)
     pValues = np.empty(bootStrapCount)
     for i in range(bootStrapCount):
-        if (i%1000==0):
+        if (i % 1000 == 0):
             print(f"on iteration {i} ...")
-        valuesA = np.random.choice(dataReader.valuesA, bootStrapSampleCount, False)
-        valuesB = np.random.choice(dataReader.valuesB, bootStrapSampleCount, False)
+        valuesA = np.random.choice(
+            dataReader.valuesA, bootStrapSampleCount, False)
+        valuesB = np.random.choice(
+            dataReader.valuesB, bootStrapSampleCount, False)
         ks = ksTest(valuesA, valuesB)
         kValues[i] = ks.ksStat
         pValues[i] = ks.ksPvalue
-    
-    print("K values: %f (+/- %f)" % (np.mean(kValues), np.std(kValues)/np.sqrt(bootStrapCount)))
-    print("P values: %f (+/- %f)" % (np.mean(pValues), np.std(pValues)/np.sqrt(bootStrapCount)))
+
+    print("K values: %f (+/- %f)" %
+          (np.mean(kValues), np.std(kValues)/np.sqrt(bootStrapCount)))
+    print("P values: %f (+/- %f)" %
+          (np.mean(pValues), np.std(pValues)/np.sqrt(bootStrapCount)))
     # current output:
     # K values: 0.051491 (+/- 0.000093)
     # P values: 0.037624 (+/- 0.000514)
+
 
 def compareToScipy():
 
@@ -151,23 +165,16 @@ def compareToScipy():
     scipyResult = scipy.stats.ks_2samp(valuesA, valuesB)
     ks = ksTest(valuesA, valuesB)
     print()
-    print(" SciPy K:", scipyResult.statistic)
-    print("Python K:", ks.ksStat)
+    print("   SciPy K:", scipyResult.statistic)
+    print("  Origin K: 0.13728")
+    print("Discrete K:", ks.ksStat)
     print()
-    print(" SciPy P:", scipyResult.pvalue)
-    print("Python P*2:", ks.ksPvalue*2)
-    print("Python P:", ks.ksPvalue)
-    print("Python P(D):", calculatePfromD(ks.ksStat))
+    print("   SciPy P:", scipyResult.pvalue)
+    print("  Origin P: 0.19529")
+    print("Discrete P:", ks.ksPvalue)
 
-def calculatePfromD(D):
-    p = 0
-    z = D
-    for i in range(1,30370+1):
-        p += np.power(-1, i-1)*np.exp(-2*i*i*z*z)
-    p *= 2
-    return p
 
 if __name__ == "__main__":
     compareToScipy()
-    #calculatePfromD(.256168)
+    # calculatePfromD(.256168)
     # we need to convert a K statistic (D) to a P value.

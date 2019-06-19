@@ -37,3 +37,6 @@ Python Analysis | OriginLab Analysis
 * [KS2 theory](https://ocw.mit.edu/courses/mathematics/18-443-statistics-for-applications-fall-2006/lecture-notes/lecture14.pdf)
 * [Evaluating the K Distribution](http://www.jstatsoft.org/v08/i18/paper?ev=pub_ext_btn_xdl)
 * [nag_2_sample_ks_test (g08cdc)](https://www.nag.co.uk/numeric/cl/nagdoc_latest/html/g08/g08cdc.html) (part of [NAG](https://en.wikipedia.org/wiki/NAG_Numerical_Library))
+* [scipy.stats.kstwobign](https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.stats.kstwobign.html#scipy.stats.kstwobign) (Kolmogorov-Smirnov two-sided test for large N)
+* [scipy/special/cephes/kolmogorov.c](https://github.com/scipy/scipy/blob/master/scipy/special/cephes/kolmogorov.c) (SciPy's actual implementation in C)
+* [Computing the Two-sided KS Statistic](https://arxiv.org/pdf/1803.00426.pdf) (LOL at section 3.5!)
