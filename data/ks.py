@@ -162,6 +162,10 @@ def compareToScipy():
     valuesA = dataReader.valuesAsubset
     valuesB = dataReader.valuesBsubset
 
+    #    SciPy K: 0.137282229965
+    #    SciPy P: 0.218640723776
+    # Discrete P: 0.236465546027
+
     scipyResult = scipy.stats.ks_2samp(valuesA, valuesB)
     ks = ksTest(valuesA, valuesB)
     print()
