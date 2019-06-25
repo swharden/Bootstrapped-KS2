@@ -713,7 +713,7 @@
             5,
             0,
             0,
-            65536});
+            131072});
             this.nudSignificance.ValueChanged += new System.EventHandler(this.NudSignificance_ValueChanged);
             // 
             // nudMeanDiff
