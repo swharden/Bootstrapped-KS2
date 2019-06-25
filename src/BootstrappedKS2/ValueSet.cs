@@ -17,11 +17,16 @@ namespace BootstrappedKS2
 
         private Random rand = new Random();
 
+        public bool isValid { get { if (values != null && values.Length > 0) return true; else return false; } }
+
         public valueSet(double[] values)
         {
             this.values = values;
-            sample = new Meta.Numerics.Statistics.Sample(values);
-            CalculateStatistics();
+            if (values != null)
+            {
+                sample = new Meta.Numerics.Statistics.Sample(values);
+                CalculateStatistics();
+            }
         }
 
         public valueSet(string text, bool textIsFilename = false)

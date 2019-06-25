@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnPasteA = new System.Windows.Forms.Button();
+            this.btnPasteB = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label15 = new System.Windows.Forms.Label();
             this.lblStdErrA = new System.Windows.Forms.Label();
@@ -59,7 +59,9 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.lblKsP = new System.Windows.Forms.Label();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.groupBootstrap = new System.Windows.Forms.GroupBox();
+            this.lblBootstrapP = new System.Windows.Forms.Label();
+            this.lblBootstrapD = new System.Windows.Forms.Label();
             this.btnRun = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnAutoSampleSize = new System.Windows.Forms.Button();
@@ -67,8 +69,16 @@
             this.nudRunCount = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.nudSampleSize = new System.Windows.Forms.NumericUpDown();
-            this.lblBootstrapD = new System.Windows.Forms.Label();
-            this.lblBootstrapP = new System.Windows.Forms.Label();
+            this.groupSampleEstimator = new System.Windows.Forms.GroupBox();
+            this.lblSampleEstimatorMessage = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.tbSampleSize = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.nudPower = new System.Windows.Forms.NumericUpDown();
+            this.nudSignificance = new System.Windows.Forms.NumericUpDown();
+            this.nudMeanDiff = new System.Windows.Forms.NumericUpDown();
+            this.label8 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudBinSize)).BeginInit();
@@ -76,28 +86,34 @@
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.groupBox5.SuspendLayout();
+            this.groupBootstrap.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudRunCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSampleSize)).BeginInit();
+            this.groupSampleEstimator.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPower)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSignificance)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMeanDiff)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // btnPasteA
             // 
-            this.button1.Location = new System.Drawing.Point(91, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(62, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "paste A";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnPasteA.Location = new System.Drawing.Point(91, 12);
+            this.btnPasteA.Name = "btnPasteA";
+            this.btnPasteA.Size = new System.Drawing.Size(62, 23);
+            this.btnPasteA.TabIndex = 0;
+            this.btnPasteA.Text = "paste A";
+            this.btnPasteA.UseVisualStyleBackColor = true;
+            this.btnPasteA.Click += new System.EventHandler(this.BtnPasteA_Click);
             // 
-            // button2
+            // btnPasteB
             // 
-            this.button2.Location = new System.Drawing.Point(163, 12);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(63, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "paste B";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnPasteB.Location = new System.Drawing.Point(163, 12);
+            this.btnPasteB.Name = "btnPasteB";
+            this.btnPasteB.Size = new System.Drawing.Size(63, 23);
+            this.btnPasteB.TabIndex = 1;
+            this.btnPasteB.Text = "paste B";
+            this.btnPasteB.UseVisualStyleBackColor = true;
+            this.btnPasteB.Click += new System.EventHandler(this.BtnPasteB_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -297,7 +313,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.scottPlotUC1.Location = new System.Drawing.Point(236, 12);
             this.scottPlotUC1.Name = "scottPlotUC1";
-            this.scottPlotUC1.Size = new System.Drawing.Size(623, 485);
+            this.scottPlotUC1.Size = new System.Drawing.Size(623, 577);
             this.scottPlotUC1.TabIndex = 4;
             // 
             // lblValuesP
@@ -383,7 +399,7 @@
             1,
             0,
             0,
-            65536});
+            0});
             this.nudBinSize.ValueChanged += new System.EventHandler(this.NudBinSize_ValueChanged);
             // 
             // lblKsD
@@ -451,23 +467,41 @@
             this.lblKsP.Text = "P = .123";
             this.lblKsP.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // groupBox5
+            // groupBootstrap
             // 
-            this.groupBox5.Controls.Add(this.lblBootstrapP);
-            this.groupBox5.Controls.Add(this.lblBootstrapD);
-            this.groupBox5.Controls.Add(this.btnRun);
-            this.groupBox5.Controls.Add(this.progressBar1);
-            this.groupBox5.Controls.Add(this.btnAutoSampleSize);
-            this.groupBox5.Controls.Add(this.label6);
-            this.groupBox5.Controls.Add(this.nudRunCount);
-            this.groupBox5.Controls.Add(this.label5);
-            this.groupBox5.Controls.Add(this.nudSampleSize);
-            this.groupBox5.Location = new System.Drawing.Point(12, 304);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(218, 128);
-            this.groupBox5.TabIndex = 16;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Bootstrap";
+            this.groupBootstrap.Controls.Add(this.lblBootstrapP);
+            this.groupBootstrap.Controls.Add(this.lblBootstrapD);
+            this.groupBootstrap.Controls.Add(this.btnRun);
+            this.groupBootstrap.Controls.Add(this.progressBar1);
+            this.groupBootstrap.Controls.Add(this.btnAutoSampleSize);
+            this.groupBootstrap.Controls.Add(this.label6);
+            this.groupBootstrap.Controls.Add(this.nudRunCount);
+            this.groupBootstrap.Controls.Add(this.label5);
+            this.groupBootstrap.Controls.Add(this.nudSampleSize);
+            this.groupBootstrap.Location = new System.Drawing.Point(12, 304);
+            this.groupBootstrap.Name = "groupBootstrap";
+            this.groupBootstrap.Size = new System.Drawing.Size(218, 128);
+            this.groupBootstrap.TabIndex = 16;
+            this.groupBootstrap.TabStop = false;
+            this.groupBootstrap.Text = "Bootstrap";
+            // 
+            // lblBootstrapP
+            // 
+            this.lblBootstrapP.AutoSize = true;
+            this.lblBootstrapP.Location = new System.Drawing.Point(6, 109);
+            this.lblBootstrapP.Name = "lblBootstrapP";
+            this.lblBootstrapP.Size = new System.Drawing.Size(113, 13);
+            this.lblBootstrapP.TabIndex = 24;
+            this.lblBootstrapP.Text = "bootstrap not yet run...";
+            // 
+            // lblBootstrapD
+            // 
+            this.lblBootstrapD.AutoSize = true;
+            this.lblBootstrapD.Location = new System.Drawing.Point(6, 96);
+            this.lblBootstrapD.Name = "lblBootstrapD";
+            this.lblBootstrapD.Size = new System.Drawing.Size(113, 13);
+            this.lblBootstrapD.TabIndex = 23;
+            this.lblBootstrapD.Text = "bootstrap not yet run...";
             // 
             // btnRun
             // 
@@ -482,6 +516,7 @@
             // progressBar1
             // 
             this.progressBar1.Location = new System.Drawing.Point(6, 70);
+            this.progressBar1.MarqueeAnimationSpeed = 0;
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(206, 23);
             this.progressBar1.TabIndex = 17;
@@ -559,37 +594,180 @@
             0,
             0});
             // 
-            // lblBootstrapD
+            // groupSampleEstimator
             // 
-            this.lblBootstrapD.AutoSize = true;
-            this.lblBootstrapD.Location = new System.Drawing.Point(6, 96);
-            this.lblBootstrapD.Name = "lblBootstrapD";
-            this.lblBootstrapD.Size = new System.Drawing.Size(113, 13);
-            this.lblBootstrapD.TabIndex = 23;
-            this.lblBootstrapD.Text = "bootstrap not yet run...";
+            this.groupSampleEstimator.Controls.Add(this.lblSampleEstimatorMessage);
+            this.groupSampleEstimator.Controls.Add(this.label12);
+            this.groupSampleEstimator.Controls.Add(this.tbSampleSize);
+            this.groupSampleEstimator.Controls.Add(this.label11);
+            this.groupSampleEstimator.Controls.Add(this.label9);
+            this.groupSampleEstimator.Controls.Add(this.nudPower);
+            this.groupSampleEstimator.Controls.Add(this.nudSignificance);
+            this.groupSampleEstimator.Controls.Add(this.nudMeanDiff);
+            this.groupSampleEstimator.Controls.Add(this.label8);
+            this.groupSampleEstimator.Location = new System.Drawing.Point(12, 438);
+            this.groupSampleEstimator.Name = "groupSampleEstimator";
+            this.groupSampleEstimator.Size = new System.Drawing.Size(218, 140);
+            this.groupSampleEstimator.TabIndex = 17;
+            this.groupSampleEstimator.TabStop = false;
+            this.groupSampleEstimator.Text = "Sample Size Estimator";
             // 
-            // lblBootstrapP
+            // lblSampleEstimatorMessage
             // 
-            this.lblBootstrapP.AutoSize = true;
-            this.lblBootstrapP.Location = new System.Drawing.Point(6, 109);
-            this.lblBootstrapP.Name = "lblBootstrapP";
-            this.lblBootstrapP.Size = new System.Drawing.Size(113, 13);
-            this.lblBootstrapP.TabIndex = 24;
-            this.lblBootstrapP.Text = "bootstrap not yet run...";
+            this.lblSampleEstimatorMessage.AutoSize = true;
+            this.lblSampleEstimatorMessage.Enabled = false;
+            this.lblSampleEstimatorMessage.Location = new System.Drawing.Point(61, 121);
+            this.lblSampleEstimatorMessage.Name = "lblSampleEstimatorMessage";
+            this.lblSampleEstimatorMessage.Size = new System.Drawing.Size(143, 13);
+            this.lblSampleEstimatorMessage.TabIndex = 25;
+            this.lblSampleEstimatorMessage.Text = "123% of of available samples";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(61, 100);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(73, 13);
+            this.label12.TabIndex = 24;
+            this.label12.Text = "sample count:";
+            // 
+            // tbSampleSize
+            // 
+            this.tbSampleSize.Location = new System.Drawing.Point(140, 97);
+            this.tbSampleSize.Name = "tbSampleSize";
+            this.tbSampleSize.ReadOnly = true;
+            this.tbSampleSize.Size = new System.Drawing.Size(72, 20);
+            this.tbSampleSize.TabIndex = 18;
+            this.tbSampleSize.Text = "12345";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(95, 73);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(39, 13);
+            this.label11.TabIndex = 23;
+            this.label11.Text = "power:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(68, 47);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(66, 13);
+            this.label9.TabIndex = 22;
+            this.label9.Text = "significance:";
+            // 
+            // nudPower
+            // 
+            this.nudPower.DecimalPlaces = 2;
+            this.nudPower.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nudPower.Location = new System.Drawing.Point(140, 71);
+            this.nudPower.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.nudPower.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nudPower.Name = "nudPower";
+            this.nudPower.Size = new System.Drawing.Size(72, 20);
+            this.nudPower.TabIndex = 21;
+            this.nudPower.Value = new decimal(new int[] {
+            99,
+            0,
+            0,
+            131072});
+            this.nudPower.ValueChanged += new System.EventHandler(this.NudPower_ValueChanged);
+            // 
+            // nudSignificance
+            // 
+            this.nudSignificance.DecimalPlaces = 2;
+            this.nudSignificance.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nudSignificance.Location = new System.Drawing.Point(140, 45);
+            this.nudSignificance.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.nudSignificance.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nudSignificance.Name = "nudSignificance";
+            this.nudSignificance.Size = new System.Drawing.Size(72, 20);
+            this.nudSignificance.TabIndex = 20;
+            this.nudSignificance.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.nudSignificance.ValueChanged += new System.EventHandler(this.NudSignificance_ValueChanged);
+            // 
+            // nudMeanDiff
+            // 
+            this.nudMeanDiff.DecimalPlaces = 1;
+            this.nudMeanDiff.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nudMeanDiff.Location = new System.Drawing.Point(140, 19);
+            this.nudMeanDiff.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.nudMeanDiff.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nudMeanDiff.Name = "nudMeanDiff";
+            this.nudMeanDiff.Size = new System.Drawing.Size(72, 20);
+            this.nudMeanDiff.TabIndex = 19;
+            this.nudMeanDiff.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudMeanDiff.ValueChanged += new System.EventHandler(this.NudMeanDiff_ValueChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(18, 21);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(116, 13);
+            this.label8.TabIndex = 18;
+            this.label8.Text = "target mean difference:";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(871, 509);
-            this.Controls.Add(this.groupBox5);
+            this.ClientSize = new System.Drawing.Size(871, 601);
+            this.Controls.Add(this.groupSampleEstimator);
+            this.Controls.Add(this.groupBootstrap);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.scottPlotUC1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnPasteB);
+            this.Controls.Add(this.btnPasteA);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Form1";
             this.Text = "Bootstrapped KS2 Test";
@@ -602,18 +780,23 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
+            this.groupBootstrap.ResumeLayout(false);
+            this.groupBootstrap.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudRunCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSampleSize)).EndInit();
+            this.groupSampleEstimator.ResumeLayout(false);
+            this.groupSampleEstimator.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPower)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSignificance)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMeanDiff)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnPasteA;
+        private System.Windows.Forms.Button btnPasteB;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label lblStdErrA;
@@ -643,7 +826,7 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label lblKsP;
-        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.GroupBox groupBootstrap;
         private System.Windows.Forms.Button btnAutoSampleSize;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.NumericUpDown nudRunCount;
@@ -653,6 +836,16 @@
         private System.Windows.Forms.Button btnRun;
         private System.Windows.Forms.Label lblBootstrapP;
         private System.Windows.Forms.Label lblBootstrapD;
+        private System.Windows.Forms.GroupBox groupSampleEstimator;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.NumericUpDown nudPower;
+        private System.Windows.Forms.NumericUpDown nudSignificance;
+        private System.Windows.Forms.NumericUpDown nudMeanDiff;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox tbSampleSize;
+        private System.Windows.Forms.Label lblSampleEstimatorMessage;
     }
 }
 
