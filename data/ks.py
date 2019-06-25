@@ -162,9 +162,6 @@ def compareToScipy():
     valuesA = dataReader.valuesAsubset
     valuesB = dataReader.valuesBsubset
 
-    #    SciPy K: 0.137282229965
-    #    SciPy P: 0.218640723776
-    # Discrete P: 0.236465546027
 
     scipyResult = scipy.stats.ks_2samp(valuesA, valuesB)
     ks = ksTest(valuesA, valuesB)
@@ -172,6 +169,7 @@ def compareToScipy():
     print("   SciPy K:", scipyResult.statistic)
     print("  Origin K: 0.13728")
     print("Discrete K:", ks.ksStat)
+
     print()
     print("   SciPy P:", scipyResult.pvalue)
     print("  Origin P: 0.19529")
@@ -180,5 +178,17 @@ def compareToScipy():
 
 if __name__ == "__main__":
     compareToScipy()
-    # calculatePfromD(.256168)
-    # we need to convert a K statistic (D) to a P value.
+
+    ### FULL SAMPLE ##
+    #    SciPy K: 0.0395891074774
+    # Discrete K: 0.0395891074774
+    #    SciPy P: 6.02410366928e-18
+    # Discrete P: 6.56505380145e-18
+
+    ### SUBSET SAMPLE ##
+    #    SciPy K: 0.137282229965
+    # Discrete K: 0.137282229965
+    #   Origin K: 0.13728
+    #    SciPy P: 0.218640723776
+    # Discrete P: 0.236465546027
+    #   Origin P: 0.19529
