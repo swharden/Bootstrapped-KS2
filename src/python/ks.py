@@ -1,5 +1,5 @@
 """
-This script demonstrates how to execute the KS2 test step by step.
+This script demonstrates how to perform the KS2 discretely.
 Examples aren't always Pythonic, but they're easy to translate to C.
 """
 
@@ -152,32 +152,24 @@ def bootstrapKs2(bootStrapCount=20_000, bootStrapSampleCount=1829):
           (np.mean(kValues), np.std(kValues)/np.sqrt(bootStrapCount)))
     print("P values: %f (+/- %f)" %
           (np.mean(pValues), np.std(pValues)/np.sqrt(bootStrapCount)))
-    # current output:
-    # K values: 0.051491 (+/- 0.000093)
-    # P values: 0.037624 (+/- 0.000514)
 
 
-def compareToScipy():
-
-    valuesA = dataReader.valuesAsubset
-    valuesB = dataReader.valuesBsubset
-
+def compareToScipy(valuesA, valuesB):
 
     scipyResult = scipy.stats.ks_2samp(valuesA, valuesB)
     ks = ksTest(valuesA, valuesB)
-    print()
-    print("   SciPy K:", scipyResult.statistic)
-    print("  Origin K: 0.13728")
-    print("Discrete K:", ks.ksStat)
 
-    print()
+    print("   SciPy K:", scipyResult.statistic)
+    print("Discrete K:", ks.ksStat)
     print("   SciPy P:", scipyResult.pvalue)
-    print("  Origin P: 0.19529")
     print("Discrete P:", ks.ksPvalue)
 
 
 if __name__ == "__main__":
-    compareToScipy()
+    print("\nfull data:")
+    compareToScipy(dataReader.valuesA, dataReader.valuesB)
+    print("\nsubset data:")
+    compareToScipy(dataReader.subsetA, dataReader.subsetB)
 
     ### FULL SAMPLE ##
     #    SciPy K: 0.0395891074774
@@ -188,7 +180,5 @@ if __name__ == "__main__":
     ### SUBSET SAMPLE ##
     #    SciPy K: 0.137282229965
     # Discrete K: 0.137282229965
-    #   Origin K: 0.13728
     #    SciPy P: 0.218640723776
     # Discrete P: 0.236465546027
-    #   Origin P: 0.19529
