@@ -285,8 +285,10 @@ namespace BootstrappedKS2
             double stdevD = Meta.Numerics.Statistics.Univariate.StandardDeviation(bootstrapDs);
             double meanP = Meta.Numerics.Statistics.Univariate.Mean(bootstrapPs);
             double stdevP = Meta.Numerics.Statistics.Univariate.StandardDeviation(bootstrapPs);
-            lblBootstrapD.Text = $"D = {FormatNumber(meanD)} +/- {FormatNumber(stdevD)} ({Math.Round(100 * stdevD / meanD, 2)}%)";
-            lblBootstrapP.Text = $"P = {FormatNumber(meanP)} +/- {FormatNumber(stdevP)} ({Math.Round(100 * meanP / stdevP, 2)}%)";
+            rtbBootstrapResults.Clear();
+            rtbBootstrapResults.Text += string.Format("D = {0} +/- {1} ({2:0.00} %)\n", FormatNumber(meanD), FormatNumber(stdevD), 100 * stdevD / meanD);
+            rtbBootstrapResults.Text += string.Format("P = {0} +/- {1}\n", FormatNumber(meanP), FormatNumber(stdevP));
+            rtbBootstrapResults.Text += string.Format("P(D) = {0}", KSTools.CalculateKsP(meanD, sampleSize, sampleSize));
         }
 
         public string FormatNumber(double value)

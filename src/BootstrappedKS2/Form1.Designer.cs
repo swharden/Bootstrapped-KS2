@@ -60,8 +60,6 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.lblKsP = new System.Windows.Forms.Label();
             this.groupBootstrap = new System.Windows.Forms.GroupBox();
-            this.lblBootstrapP = new System.Windows.Forms.Label();
-            this.lblBootstrapD = new System.Windows.Forms.Label();
             this.btnRun = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnAutoSampleSize = new System.Windows.Forms.Button();
@@ -79,6 +77,7 @@
             this.nudSignificance = new System.Windows.Forms.NumericUpDown();
             this.nudMeanDiff = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
+            this.rtbBootstrapResults = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudBinSize)).BeginInit();
@@ -313,7 +312,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.scottPlotUC1.Location = new System.Drawing.Point(236, 12);
             this.scottPlotUC1.Name = "scottPlotUC1";
-            this.scottPlotUC1.Size = new System.Drawing.Size(623, 577);
+            this.scottPlotUC1.Size = new System.Drawing.Size(623, 654);
             this.scottPlotUC1.TabIndex = 4;
             // 
             // lblValuesP
@@ -469,8 +468,7 @@
             // 
             // groupBootstrap
             // 
-            this.groupBootstrap.Controls.Add(this.lblBootstrapP);
-            this.groupBootstrap.Controls.Add(this.lblBootstrapD);
+            this.groupBootstrap.Controls.Add(this.rtbBootstrapResults);
             this.groupBootstrap.Controls.Add(this.btnRun);
             this.groupBootstrap.Controls.Add(this.progressBar1);
             this.groupBootstrap.Controls.Add(this.btnAutoSampleSize);
@@ -480,28 +478,10 @@
             this.groupBootstrap.Controls.Add(this.nudSampleSize);
             this.groupBootstrap.Location = new System.Drawing.Point(12, 304);
             this.groupBootstrap.Name = "groupBootstrap";
-            this.groupBootstrap.Size = new System.Drawing.Size(218, 128);
+            this.groupBootstrap.Size = new System.Drawing.Size(218, 169);
             this.groupBootstrap.TabIndex = 16;
             this.groupBootstrap.TabStop = false;
             this.groupBootstrap.Text = "Bootstrap";
-            // 
-            // lblBootstrapP
-            // 
-            this.lblBootstrapP.AutoSize = true;
-            this.lblBootstrapP.Location = new System.Drawing.Point(6, 109);
-            this.lblBootstrapP.Name = "lblBootstrapP";
-            this.lblBootstrapP.Size = new System.Drawing.Size(113, 13);
-            this.lblBootstrapP.TabIndex = 24;
-            this.lblBootstrapP.Text = "bootstrap not yet run...";
-            // 
-            // lblBootstrapD
-            // 
-            this.lblBootstrapD.AutoSize = true;
-            this.lblBootstrapD.Location = new System.Drawing.Point(6, 96);
-            this.lblBootstrapD.Name = "lblBootstrapD";
-            this.lblBootstrapD.Size = new System.Drawing.Size(113, 13);
-            this.lblBootstrapD.TabIndex = 23;
-            this.lblBootstrapD.Text = "bootstrap not yet run...";
             // 
             // btnRun
             // 
@@ -605,7 +585,7 @@
             this.groupSampleEstimator.Controls.Add(this.nudSignificance);
             this.groupSampleEstimator.Controls.Add(this.nudMeanDiff);
             this.groupSampleEstimator.Controls.Add(this.label8);
-            this.groupSampleEstimator.Location = new System.Drawing.Point(12, 438);
+            this.groupSampleEstimator.Location = new System.Drawing.Point(12, 495);
             this.groupSampleEstimator.Name = "groupSampleEstimator";
             this.groupSampleEstimator.Size = new System.Drawing.Size(218, 140);
             this.groupSampleEstimator.TabIndex = 17;
@@ -754,11 +734,20 @@
             this.label8.TabIndex = 18;
             this.label8.Text = "target mean difference:";
             // 
+            // rtbBootstrapResults
+            // 
+            this.rtbBootstrapResults.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtbBootstrapResults.Location = new System.Drawing.Point(6, 99);
+            this.rtbBootstrapResults.Name = "rtbBootstrapResults";
+            this.rtbBootstrapResults.Size = new System.Drawing.Size(206, 64);
+            this.rtbBootstrapResults.TabIndex = 18;
+            this.rtbBootstrapResults.Text = "bootstrap not yet run...";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(871, 601);
+            this.ClientSize = new System.Drawing.Size(871, 678);
             this.Controls.Add(this.groupSampleEstimator);
             this.Controls.Add(this.groupBootstrap);
             this.Controls.Add(this.groupBox4);
@@ -834,8 +823,6 @@
         private System.Windows.Forms.NumericUpDown nudSampleSize;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Button btnRun;
-        private System.Windows.Forms.Label lblBootstrapP;
-        private System.Windows.Forms.Label lblBootstrapD;
         private System.Windows.Forms.GroupBox groupSampleEstimator;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label9;
@@ -846,6 +833,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox tbSampleSize;
         private System.Windows.Forms.Label lblSampleEstimatorMessage;
+        private System.Windows.Forms.RichTextBox rtbBootstrapResults;
     }
 }
 
